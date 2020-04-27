@@ -12,7 +12,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const getData=async () => {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
-    await page.setViewport({ width: 500, height: 900 });
+    await page.setViewport({ width: 200, height: 900 });
     // await page.goto('https://c19.se/en/Sweden/V%C3%A4stra%20G%C3%B6taland');
     // 'https://c19.se/en/Sweden/Stockholm'
     await page.goto(req.body.url);
