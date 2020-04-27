@@ -5,7 +5,6 @@ const app = express();
 app.listen(process.env.PORT || 8080, console.log("running"));
 app.use(express.static("./static"));
 app.use(bodyParser.urlencoded({ extended: false,
-    args: ['--no-sandbox']
 }))
 app.use(bodyParser.json())
 app.use(function(req, res, next){
@@ -20,7 +19,10 @@ app.post("/getCsv", async (req, res) => {
         res.status(400).send("please enter a url");
     const createCsvWriter = require('csv-writer').createObjectCsvWriter;
     const getData = async () => {
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: false,
+    args: ['--no-sandbox']
+        
+        });
         const page = await browser.newPage();
         await page.setViewport({ width: 200, height: 900 });
         // await page.goto('https://c19.se/en/Sweden/V%C3%A4stra%20G%C3%B6taland');
