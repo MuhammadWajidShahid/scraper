@@ -2,10 +2,12 @@ const puppeteer = require('puppeteer');
 const express = require("express")
 var bodyParser = require('body-parser')
 const app = express();
+app.listen(process.env.PORT || 8080, console.log("running"));
 app.use(express.static("./static"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post("/getCsv", async (req, res) => {
+    req.setTimeout(5000000);
     if (!req.body.url)
         res.status(400).send("please enter a url");
     const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -71,5 +73,4 @@ app.post("/getCsv", async (req, res) => {
     //  res.sendFile(`${__dirname}/record.csv`);
 })
 
-const server=app.listen(process.env.PORT || 8080, console.log("running"));
-server.setTimeout(5000000);
+
