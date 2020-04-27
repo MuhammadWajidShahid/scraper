@@ -5,7 +5,7 @@ const app = express();
 app.listen(process.env.PORT || 8080, console.log("running"));
 app.use(express.static("./static"));
 app.use(bodyParser.urlencoded({ extended: false,
-args:["--no-sandbox"]
+    args: ['--no-sandbox']
 }))
 app.use(bodyParser.json())
 app.use(function(req, res, next){
