@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const express = require("express")
 var bodyParser = require('body-parser')
 const app = express();
-app.listen(process.env.PORT || 8080, console.log("running"));
+app.listen(process.env.PORT || 8080, console.log("running at http://localhost:8080/"));
 app.use(express.static("./static"));
 app.use(bodyParser.urlencoded({ extended: false,
 }))
