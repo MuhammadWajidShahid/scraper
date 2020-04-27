@@ -6,6 +6,12 @@ app.listen(process.env.PORT || 8080, console.log("running"));
 app.use(express.static("./static"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(function(req, res, next){
+    res.setTimeout(5000000, function(){
+        // call back function is called when request timed out.
+    });
+    next();
+});
 app.post("/getCsv", async (req, res) => {
     req.setTimeout(5000000);
     if (!req.body.url)
